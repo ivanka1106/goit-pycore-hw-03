@@ -1,17 +1,25 @@
+# функція для нормалізаціі телефонних номерів
+
 import re
 
 def normalize_phone(phone_number):
     
+    # видаляємо всі символи, крім цифр і знаку +
     cleaned_number = re.sub(r"[^\d+]", "", phone_number)
     
+    # якщо номер починається з '380', додаємо тільки знак '+'
     if cleaned_number.startswith ('380'):
         return '+' + cleaned_number
+    
+    # якщо номер не містить знаку '+', додаємо міжнародний код '+38'
     elif  not cleaned_number.startswith ('+'):
         return '+38' + cleaned_number
+    
+    # повераємо очищений номер
     else:
         return cleaned_number
 
-    # приклад використання
+    # Приклад використання функції
     
 raw_numbers = [
     "067\\t123 4567",
